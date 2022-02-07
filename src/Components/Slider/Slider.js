@@ -10,10 +10,21 @@ export default function Slider() {
         index: 1,
         inProgress: false
     })
-    const nextSlide = ()=>{
-        
+    const nextSlide = () => {
+        if (slideAnim.index !== dataSlider.length) {
+            setSlideAnim({ index: slideAnim.index + 1, inProgress: true })
+        }
+        if (slideAnim.index === dataSlider.length) {
+            setSlideAnim({ index: 1, inProgress: true })
+        }
     }
-    const prevSlide = ()=>{
+    const prevSlide = () => {
+        if (slideAnim.index !== 1) {
+            setSlideAnim({ index: slideAnim.index - 1, inProgress: true })
+        }
+        if (slideAnim.index === 1) {
+            setSlideAnim({ index: 5, inProgress: true })
+        }
 
     }
     return (
@@ -23,13 +34,13 @@ export default function Slider() {
                     <div
                         key={obj.id}
                         className={slideAnim.index === index + 1 ?
-                        "slide active-anim" : "slide"}
+                            "slide active-anim" : "slide"}
                     >
-                        <img 
-                        src={process.env.PUBLIC_URL + `/Imgs/img${index + 1}.jpg`} alt='' 
+                        <img
+                            src={process.env.PUBLIC_URL + `/Imgs/img${index + 1}.jpg`} alt=''
                         />
-                        <BtnSlider moveSlide={nextSlide} direction={'next'}/>
-                        <BtnSlider moveSlide={prevSlide} direction={'prev'}/>
+                        <BtnSlider moveSlide={nextSlide} direction={'next'} />
+                        <BtnSlider moveSlide={prevSlide} direction={'prev'} />
                     </div>
                 )
             })}
