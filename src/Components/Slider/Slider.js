@@ -11,19 +11,32 @@ export default function Slider() {
         inProgress: false
     })
     const nextSlide = () => {
-        if (slideAnim.index !== dataSlider.length) {
+        if (slideAnim.index !== dataSlider.length && !slideAnim.inProgress) {
             setSlideAnim({ index: slideAnim.index + 1, inProgress: true })
+            setTimeout(() =>{
+                setSlideAnim({index: slideAnim.index + 1, inProgress: false})
+            },400)
         }
-        if (slideAnim.index === dataSlider.length) {
+        if (slideAnim.index === dataSlider.length && !slideAnim.inProgress) {
             setSlideAnim({ index: 1, inProgress: true })
+            setTimeout(() =>{
+                setSlideAnim({index: 1, inProgress: false})
+            },400)
         }
     }
     const prevSlide = () => {
-        if (slideAnim.index !== 1) {
+        if (slideAnim.index !== 1 && !slideAnim.inProgress) {
             setSlideAnim({ index: slideAnim.index - 1, inProgress: true })
+            setTimeout(() =>{
+                setSlideAnim({index: slideAnim.index - 1, inProgress: false})
+            },400)
         }
-        if (slideAnim.index === 1) {
+        if (slideAnim.index === 1 && !slideAnim.inProgress) {
             setSlideAnim({ index: 5, inProgress: true })
+            setTimeout(() =>{
+                setSlideAnim({index: 5
+                    , inProgress: false})
+            },400)
         }
 
     }
